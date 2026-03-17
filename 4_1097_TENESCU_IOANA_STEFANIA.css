@@ -1,0 +1,235 @@
+/* 1. ANIMATII GLOBALE */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+    transition: all 0.3s ease-out; 
+}
+
+html, body {
+    height: 100%; 
+}
+
+body {
+    font-family: 'Inter', sans-serif; 
+    background-color: #1a1a1a; 
+    color: #e0e0e0; 
+    min-height: 100vh; 
+    
+    /* centram aplicatia pe ecran */
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    padding: 0; 
+}
+
+h1 {
+    display: none; 
+}
+
+/* animatie pentru incarcarea subtila a aplicatie */
+@keyframes app-load {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* 2. STRUCTURA CONTAINERELOR */
+
+#container-proiect {
+    display: flex; 
+    width: 95vw; 
+    max-width: 1400px;
+    height: 90vh; 
+    background-color: #2b2b2b; 
+    border-radius: 12px; 
+    overflow: hidden; 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); 
+    
+    /* animatia de incarcare */
+    opacity: 0; 
+    animation: app-load 0.8s ease-out forwards; 
+    animation-delay: 0.2s; 
+}
+
+
+
+/* 3.  PANOUL DE CONTROALE  */
+
+#controls-panel {
+    width: 300px; 
+    min-width: 280px;
+    background-color: #2b2b2b; 
+    padding: 25px;
+    display: flex; 
+    flex-direction: column;
+    gap: 15px; 
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+ 
+}
+
+#controls-panel h2, #controls-panel h3 {
+    color: #f0f0f0;
+    font-weight: 500;
+}
+
+
+hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+    margin: 15px 0;
+}
+
+
+
+
+/* 4.  ZONA DE EDITOR (Coloana Dreapta) */
+
+#editor-area {
+    flex-grow: 1; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    padding: 20px; 
+    background-color: #3a3a3a; 
+}
+
+#CANVAS {
+    box-sizing: border-box;
+    max-width: 100%; 
+    max-height: 100%;
+    background-color: #1f1f1f; 
+    border-radius: 6px; 
+    cursor: crosshair; /* schimba mouse-ul într-o cruce (+) ca sa stii ca poti desena o selectie.*/
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+}
+
+#editor-area:hover #CANVAS {
+    border-color: #000205; /* Culoare de accent la hover */
+    box-shadow: 0 5px 25px rgba(255, 255, 255, 0.3);
+}
+
+.dashed-border {
+    border: 3px dashed rgba(255, 255, 255, 0.4) !important; 
+    background-color: #252525; 
+}
+
+
+
+/* 5. INPUT & BUTOANE) */
+
+
+/* animatie pentru a sublinia zona de încărcare */
+@keyframes pulse-border {
+    0% { border-color: #555; }
+    50% { border-color: #555; } 
+    100% { border-color: #555; }
+}
+
+#image-loader {
+    width: 100%;
+    padding: 8px;
+    background-color: #3a3a3a;
+    border: 1px solid #555;
+    color: #e0e0e0;
+    border-radius: 4px;
+    font-size: 0.9em;
+    cursor: pointer;
+    animation: pulse-border 4s infinite alternate ease-in-out;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+
+
+#image-loader:hover {
+    background-color: #4a4a4a;
+    border-color: #4a4a4a; 
+}
+
+
+/* stiluri care se aplica pentru toate butoanele */
+button {
+    padding: 6px 10px; 
+    cursor: pointer;
+    display: block; 
+    width: 100%; 
+    border: none; 
+    background-color: #424242; 
+    color: white; 
+    border-radius: 4px; 
+    font-size: 0.85em;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease; 
+}
+
+button:hover {
+    background-color: #BDBDBD; 
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4), 0 0 10px rgba(3, 22, 43, 0.637); 
+}
+
+/* efect cand apesi butonul */
+button:active {
+    background-color: #000000; 
+    transform: translateY(1px); 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* organizare butoane mici */
+.operațiuni-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 10px;
+    margin: 15px 0;
+}
+
+/* stil  pentru butoanele din grid */
+.operațiuni-grid button {
+    width: 100%;
+    margin: 0; 
+    padding: 10px 5px;
+    font-size: 0.8em; 
+    background-color: #444; 
+}
+
+
+#save_btn {
+    grid-column: span 2; 
+    background-color: #021f24 !important; 
+    font-weight: bold;
+    font-size: 1em !important;
+    margin-top: 5px;
+}
+
+#save_btn:hover {
+    background-color: #218838;
+}
+
+
+#histogram-canvas {
+    width: 100%; 
+    height: 100px;
+    background-color: #1f1f1f;
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 4px;
+    margin-top: 10px;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    transition: box-shadow 0.3s ease;
+}
+
+#histogram-canvas:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

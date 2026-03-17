@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor foto</title>
+    <link rel="stylesheet" href="4_1097_TENESCU_IOANA_STEFANIA.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+    <h1> Editor foto</h1>
+    
+    <img id="icon_upload" src="media/icon_upload.png" style="display: none;">
+
+<!-- am organizat pagina intr-un container principal, impartit in 2 mari sectiuni -->
+    <div id="container-proiect">
+    
+        <!-- 1. Panoul de control -->
+        <div id="controls-panel">  
+
+            <!-- punctul de incarcare al unei noi imagini -->
+            <h2>Încărcare Imagine</h2>
+            <input type="file" id="image_loading" accept="image/jpeg, image/jpg">
+            
+            <hr>
+            <!-- butoane sunt grupate cu denumirea de operatiuni -->
+            <h2>Operațiuni</h2>
+          <div class="operațiuni-grid">
+    <button id="crop_btn">Crop</button>
+    <button id="delete_btn">Șterge Selecția</button>
+    <button id="grayscale_btn">Efect Alb-Negru</button>
+    <button id="scale_btn">Redimensionează</button>
+    <button id="add_text_btn">Adaugă Text</button>
+    <button id="reset_btn" >Resetează Imaginea</button>
+    <button id="save_btn">Salvare</button>
+
+</div>
+
+            <!-- un element canvas separat -->
+            <h3>Histogramă Culoare</h3>
+            <canvas id="histogram-canvas" width="256" height="100"></canvas>
+             
+           
+        </div>
+        <!-- 2. Zona de editare -->
+         <!-- Canvas-ul principal , zona in care vom edita imaginea -->
+        <div id="editor-area">
+            <canvas id="CANVAS" width="800" height="600"></canvas>
+        </div>
+    </div>
+
+    <!-- un element care sta ascuns si apare doar cand utilizatorul vrea sa adauge/editeze text -->
+    <div id="text-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; align-items: center; justify-content: center;">
+       
+        <div style="background: #222; padding: 20px; border-radius: 10px; width: 350px; color: white; border: 1px solid #444;">
+           
+            <h2 id="modal-title">Adaugă Text</h2>
+            <input type="text" id="modal-text-input" placeholder="Introdu textul aici..." style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: none; color: black;">
+            
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <div style="flex: 1;">
+                    <!-- am adaugat fonturiile pentru text -->
+                    <label>Font:</label>
+                    <select id="modal-font-family" style="width: 100%; padding: 5px; color: black;">
+                        <option value="Arial">Arial</option>
+                        <option value="Inter">Inter</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Verdana">Verdana</option>
+                    </select>
+
+
+                </div>
+                <div style="flex: 1;">
+
+                    <label>Mărime:</label>
+
+                    <input type="number" id="modal-font-size" value="40" style="width: 100%; padding: 5px; color: black;">
+                </div>
+            </div>
+            
+            <label>Culoare:</label>
+            <input type="color" id="modal-font-color" value="#ffffff" style="width: 100%; height: 40px; border: none; cursor: pointer; margin-bottom: 20px;">
+            
+            <div style="display: flex; justify-content: space-between;">
+<!-- am adaugat butoanele pentru salvare sau cancel -->
+                <button id="modal-cancel-btn" style="background: #555; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Anulează</button>
+                <button id="modal-save-btn" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Adaugă pe imagine</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="4_1097_TENESCU_IOANA_STEFANIA.js"></script>
+</body>
+</html>
